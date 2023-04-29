@@ -6,6 +6,11 @@
 #include <autoconf.h>
 #include <sel4runtime/stdint.h>
 
+// NIRCHG
+// #include <sel4debug/debug.h>
+// #include <utils/zf_log.h>
+#include <utils/util.h>
+
 #ifdef CONFIG_FSGSBASE_INST
 static inline sel4runtime_uintptr_t sel4runtime_read_fs_base(void)
 {
@@ -16,6 +21,11 @@ static inline sel4runtime_uintptr_t sel4runtime_read_fs_base(void)
 
 static inline void sel4runtime_write_fs_base(sel4runtime_uintptr_t reg)
 {
+	// NIRCHG
+	// seL4_DebugDumpScheduler();
+    // debug_safe_printf("In sel4runtime_write_fs_base\n");
+    // vfprintf(stdout, "Test printf\n", NULL);
+    // ZF_LOGD("In sel4runtime_write_fs_base, reg = %ld\n", reg);
     __asm__ __volatile__("wrfsbase %0" :: "r"(reg));
 }
 
